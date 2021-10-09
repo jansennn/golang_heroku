@@ -2,24 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="7e5d593d-6734-4020-a8d1-65e34b52bb93" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/golang_heroku.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/database.config.go" beforeDir="false" afterPath="$PROJECT_DIR$/config/database.config.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/go.mod" beforeDir="false" afterPath="$PROJECT_DIR$/go.mod" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/go.sum" beforeDir="false" afterPath="$PROJECT_DIR$/go.sum" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/handler/v1/auth.handler.go" beforeDir="false" afterPath="$PROJECT_DIR$/handler/v1/auth.handler.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/handler/v1/product.handler.go" beforeDir="false" afterPath="$PROJECT_DIR$/handler/v1/product.handler.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/handler/v1/user.handler.go" beforeDir="false" afterPath="$PROJECT_DIR$/handler/v1/user.handler.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/main.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/middleware/auth.middleware.go" beforeDir="false" afterPath="$PROJECT_DIR$/middleware/auth.middleware.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/repo/product.repo.go" beforeDir="false" afterPath="$PROJECT_DIR$/repo/product.repo.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/repo/user.repo.go" beforeDir="false" afterPath="$PROJECT_DIR$/repo/user.repo.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/service/auth.service.go" beforeDir="false" afterPath="$PROJECT_DIR$/service/auth.service.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/service/product.service.go" beforeDir="false" afterPath="$PROJECT_DIR$/service/product.service.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/service/product/product.response.go" beforeDir="false" afterPath="$PROJECT_DIR$/service/product/product.response.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/service/user.service.go" beforeDir="false" afterPath="$PROJECT_DIR$/service/user.service.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/service/user/user.response.go" beforeDir="false" afterPath="$PROJECT_DIR$/service/user/user.response.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
