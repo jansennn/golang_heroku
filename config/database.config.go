@@ -2,12 +2,25 @@ package config
 
 import (
 	"fmt"
-	"os"
-
+	"github.com/joho/godotenv"
 	"github.com/jansennn/golang_heroku/entity"
 	"gorm.io/driver/postgres"
 	"gorm.io/gorm"
+	"log"
+	"os"
 )
+
+func goDotEnvVariable(key string) string {
+
+	// load .env file
+	err := godotenv.Load(".env")
+
+	if err != nil {
+		log.Fatalf("Error loading .env file")
+	}
+
+	return os.Getenv(key)
+}
 
 //SetupDatabaseConnection is creating a new connection to our database
 func SetupDatabaseConnection() *gorm.DB {
@@ -16,13 +29,26 @@ func SetupDatabaseConnection() *gorm.DB {
 	// 	panic("Failed to load env file. Make sure .env file is exists!")
 	// }
 
+	//for development
+	//dbUser := goDotEnvVariable("DB_USER")
+	//dbPass := goDotEnvVariable("DB_PASSWORD")
+	//dbHost := goDotEnvVariable("DB_HOST")
+	//dbName := goDotEnvVariable("DB_NAME")
+	//dbPort := goDotEnvVariable("DB_PORT")
+
+	//for deployment
 	dbUser := os.Getenv("DB_USER")
 	dbPass := os.Getenv("DB_PASSWORD")
 	dbHost := os.Getenv("DB_HOST")
 	dbName := os.Getenv("DB_NAME")
 	dbPort := os.Getenv("DB_PORT")
 
-	dsn := fmt.Sprintf("host=%s user=%s password=%s port=%s dbname=%s sslmode=require TimeZone=Asia/Shanghai", dbHost, dbUser, dbPass, dbPort, dbName)
+	//for development
+	//dsn := fmt.Sprintf("host=%s user=%s password=%s dbname=%s port=%s sslmode=disable TimeZone=Asia/Shanghai", dbHost, dbUser, dbPass, dbName, dbPort)
+
+	//for deployment
+	dsn := fmt.Sprintf("host=%s user=%s password=%s dbname=%s port=%s sslmode=require TimeZone=Asia/Shanghai", dbHost, dbUser, dbPass, dbName, dbPort)
+
 	db, err := gorm.Open(postgres.Open(dsn), &gorm.Config{})
 	if err != nil {
 		panic("Failed to create a connection to database")
