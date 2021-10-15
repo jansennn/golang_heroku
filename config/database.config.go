@@ -30,31 +30,31 @@ func SetupDatabaseConnection() *gorm.DB {
 	// }
 
 	//for development
-	//dbUser := goDotEnvVariable("DB_USER")
-	//dbPass := goDotEnvVariable("DB_PASSWORD")
-	//dbHost := goDotEnvVariable("DB_HOST")
-	//dbName := goDotEnvVariable("DB_NAME")
-	//dbPort := goDotEnvVariable("DB_PORT")
+	dbUser := goDotEnvVariable("DB_USER")
+	dbPass := goDotEnvVariable("DB_PASSWORD")
+	dbHost := goDotEnvVariable("DB_HOST")
+	dbName := goDotEnvVariable("DB_NAME")
+	dbPort := goDotEnvVariable("DB_PORT")
 
 	//for deployment
-	dbUser := os.Getenv("DB_USER")
-	dbPass := os.Getenv("DB_PASSWORD")
-	dbHost := os.Getenv("DB_HOST")
-	dbName := os.Getenv("DB_NAME")
-	dbPort := os.Getenv("DB_PORT")
+	//dbUser := os.Getenv("DB_USER")
+	//dbPass := os.Getenv("DB_PASSWORD")
+	//dbHost := os.Getenv("DB_HOST")
+	//dbName := os.Getenv("DB_NAME")
+	//dbPort := os.Getenv("DB_PORT")
 
 	//for development
-	//dsn := fmt.Sprintf("host=%s user=%s password=%s dbname=%s port=%s sslmode=disable TimeZone=Asia/Shanghai", dbHost, dbUser, dbPass, dbName, dbPort)
+	dsn := fmt.Sprintf("host=%s user=%s password=%s dbname=%s port=%s sslmode=disable TimeZone=Asia/Shanghai", dbHost, dbUser, dbPass, dbName, dbPort)
 
 	//for deployment
-	dsn := fmt.Sprintf("host=%s user=%s password=%s dbname=%s port=%s sslmode=require TimeZone=Asia/Shanghai", dbHost, dbUser, dbPass, dbName, dbPort)
+	//dsn := fmt.Sprintf("host=%s user=%s password=%s dbname=%s port=%s sslmode=require TimeZone=Asia/Shanghai", dbHost, dbUser, dbPass, dbName, dbPort)
 
 	db, err := gorm.Open(postgres.Open(dsn), &gorm.Config{})
 	if err != nil {
 		panic("Failed to create a connection to database")
 	}
 
-	db.AutoMigrate(&entity.User{}, &entity.Product{})
+	db.AutoMigrate(&entity.User{}, &entity.Product{}, &entity.Description{})
 	println("Database connected!")
 	return db
 }

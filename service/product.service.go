@@ -90,7 +90,7 @@ func (c *productService) UpdateProduct(updateProductRequest dto.UpdateProductReq
 	if err != nil {
 		return nil, err
 	}
-
+	fmt.Println(product)
 	product.UserID = uid
 	product, err = c.productRepo.UpdateProduct(product)
 

@@ -11,16 +11,19 @@ import (
 )
 
 var (
-	db             *gorm.DB               = config.SetupDatabaseConnection()
-	userRepo       repo.UserRepository    = repo.NewUserRepo(db)
-	productRepo    repo.ProductRepository = repo.NewProductRepo(db)
-	authService    service.AuthService    = service.NewAuthService(userRepo)
-	jwtService     service.JWTService     = service.NewJWTService()
-	userService    service.UserService    = service.NewUserService(userRepo)
-	productService service.ProductService = service.NewProductService(productRepo)
-	authHandler    v1.AuthHandler         = v1.NewAuthHandler(authService, jwtService, userService)
-	userHandler    v1.UserHandler         = v1.NewUserHandler(userService, jwtService)
-	productHandler v1.ProductHandler      = v1.NewProductHandler(productService, jwtService)
+	db             		*gorm.DB               		= config.SetupDatabaseConnection()
+	userRepo       		repo.UserRepository    		= repo.NewUserRepo(db)
+	productRepo    		repo.ProductRepository 		= repo.NewProductRepo(db)
+	descriptionRepo  	repo.DescriptionRepository  = repo.NewDescriptionRepo(db)
+	authService    		service.AuthService    		= service.NewAuthService(userRepo)
+	jwtService     		service.JWTService     		= service.NewJWTService()
+	userService    		service.UserService    		= service.NewUserService(userRepo)
+	productService 		service.ProductService 		= service.NewProductService(productRepo)
+	descriptionService  service.DescriptionService  = service.NewDescriptionService(descriptionRepo)
+	authHandler    		v1.AuthHandler         = v1.NewAuthHandler(authService, jwtService, userService)
+	userHandler    		v1.UserHandler         = v1.NewUserHandler(userService, jwtService)
+	productHandler 		v1.ProductHandler      = v1.NewProductHandler(productService, jwtService)
+	descriptionHandler  v1.DescriptionHandler  = v1.NewDescriptionHandler(descriptionService, jwtService)
 )
 
 func main() {
@@ -46,6 +49,13 @@ func main() {
 		productRoutes.GET("/:id", productHandler.FindOneProductByID)
 		productRoutes.PUT("/:id", productHandler.UpdateProduct)
 		productRoutes.DELETE("/:id", productHandler.DeleteProduct)
+	}
+
+	descriptionRoutes := server.Group("api/description", middleware.AuthorizeJWT(jwtService))
+	{
+		descriptionRoutes.GET("/:id", descriptionHandler.FindOneDescriptionById)
+		descriptionRoutes.POST("/", descriptionHandler.CreateDescription)
+		descriptionRoutes.PUT("/:id", descriptionHandler.UpdateDescription)
 	}
 
 	checkRoutes := server.Group("api/check")
