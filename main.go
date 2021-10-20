@@ -37,7 +37,8 @@ func main() {
 	config.AllowAllOrigins = true
 	server.Use(cors.New(config))
 
-	server.GET("/api/description/:id", descriptionHandler.FindOneDescriptionById)
+	server.GET("/api/description-public/:id", descriptionHandler.FindOneDescriptionById)
+
 	authRoutes := server.Group("api/auth")
 	{
 		authRoutes.POST("/login", authHandler.Login)
@@ -59,12 +60,12 @@ func main() {
 		productRoutes.DELETE("/:id", productHandler.DeleteProduct)
 	}
 
-	//descriptionRoutes := server.Group("api/description")
-	//{
-	//	//descriptionRoutes.GET("/:id", descriptionHandler.FindOneDescriptionById)
-	//	descriptionRoutes.POST("/", descriptionHandler.CreateDescription)
-	//	descriptionRoutes.PUT("/:id", descriptionHandler.UpdateDescription)
-	//}
+	descriptionRoutes := server.Group("api/description")
+	{
+		//descriptionRoutes.GET("/:id", descriptionHandler.FindOneDescriptionById)
+		descriptionRoutes.POST("/", descriptionHandler.CreateDescription)
+		descriptionRoutes.PUT("/:id", descriptionHandler.UpdateDescription)
+	}
 
 	projectRoutes := server.Group("api/project")
 	{
