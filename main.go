@@ -17,17 +17,20 @@ var (
 	productRepo    		repo.ProductRepository 		= repo.NewProductRepo(db)
 	descriptionRepo  	repo.DescriptionRepository  = repo.NewDescriptionRepo(db)
 	projectRepo 		repo.ProjectRepository		= repo.NewProjectRepo(db)
+	careerRepo 			repo.CareerRepository		= repo.NewCareerRepo(db)
 	authService    		service.AuthService    		= service.NewAuthService(userRepo)
 	jwtService     		service.JWTService     		= service.NewJWTService()
 	userService    		service.UserService    		= service.NewUserService(userRepo)
 	productService 		service.ProductService 		= service.NewProductService(productRepo)
 	descriptionService  service.DescriptionService  = service.NewDescriptionService(descriptionRepo)
 	projectService 		service.ProjectService		= service.NewProjectService(projectRepo)
+	careerService 		service.CareerService		= service.NewCareerService(careerRepo)
 	authHandler    		v1.AuthHandler         		= v1.NewAuthHandler(authService, jwtService, userService)
 	userHandler    		v1.UserHandler         		= v1.NewUserHandler(userService, jwtService)
 	productHandler 		v1.ProductHandler      		= v1.NewProductHandler(productService, jwtService)
 	descriptionHandler  v1.DescriptionHandler  		= v1.NewDescriptionHandler(descriptionService, jwtService)
 	projectHandler		v1.ProjectHandler	 		= v1.NewProjectHandler(projectService)
+	careerHandler		v1.CareerHandler			= v1.NewCareerHandler(careerService)
 )
 
 func main() {
@@ -73,6 +76,14 @@ func main() {
 		projectRoutes.POST("/", projectHandler.CreateProject)
 		projectRoutes.GET("/:id", projectHandler.FindOneProjectById)
 		projectRoutes.PUT("/:id", projectHandler.UpdateProject)
+	}
+
+	careerRoutes := server.Group("api/career")
+	{
+		careerRoutes.GET("/", careerHandler.All)
+		careerRoutes.POST("/", careerHandler.CreateCareer)
+		careerRoutes.GET("/:id", careerHandler.FindOneCareerById)
+		careerRoutes.PUT("/:id", careerHandler.UpdateCareer)
 	}
 
 	checkRoutes := server.Group("api/check")
