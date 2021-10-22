@@ -41,7 +41,7 @@ func main() {
 	server.Use(cors.New(config))
 
 	server.GET("/api/description-public/:id", descriptionHandler.FindOneDescriptionById)
-
+	server.GET("/api/career-public/", careerHandler.All)
 	authRoutes := server.Group("api/auth")
 	{
 		authRoutes.POST("/login", authHandler.Login)
